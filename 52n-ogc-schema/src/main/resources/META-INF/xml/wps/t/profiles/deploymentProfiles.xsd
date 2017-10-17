@@ -12,7 +12,7 @@
 	<!-- =============================================================
 		includes and imports
 	============================================================== -->
-	<import namespace="http://www.opengis.net/wps/2.0" schemaLocation="http://schemas.opengis.net/wps/2.0/wps.xsd"/>
+	<import namespace="http://www.opengis.net/wps/2.0" schemaLocation="https://raw.githubusercontent.com/spacebel/common-xml/master/52n-ogc-schema/src/main/resources/META-INF/xml/wps/t/wpsTransactional.xsd"/>
 	<!-- =============================================================
 		elements and types
 	============================================================== -->
