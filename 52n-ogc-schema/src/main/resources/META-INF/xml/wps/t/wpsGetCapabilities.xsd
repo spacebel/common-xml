@@ -17,7 +17,6 @@
 	</annotation>
 	<!-- all-components document include (OGC 06-135r11 s#14) -->
 	<include schemaLocation="wps.xsd"/>
-	
 	<!-- === IMPORTS === -->
 	<import namespace="http://www.opengis.net/ows/2.0" schemaLocation="http://schemas.opengis.net/ows/2.0/owsAll.xsd"/>
 	<!-- === INCLUDES === -->

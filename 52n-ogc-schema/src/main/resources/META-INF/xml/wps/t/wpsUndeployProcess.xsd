@@ -75,7 +75,7 @@
 						</annotation>
 					</element>
 				</sequence>
-				<element name="FailureReason" type="xs:string">
+				<element name="FailureReason" type="string">
 					<annotation>
 						<documentation>If UndeploymentDone = false</documentation>
 					</annotation>

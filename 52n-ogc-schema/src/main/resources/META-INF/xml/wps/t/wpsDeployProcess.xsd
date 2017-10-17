@@ -50,7 +50,7 @@
 	</complexType>
 	<complexType name="DeploymentProfileType">
 		<sequence>
-			<element name="DeploymentProfileName" type="xs:normalizedString">
+			<element name="DeploymentProfileName" type="normalizedString">
 				<annotation>
 					<documentation>Process deployment profile Name.</documentation>
 				</annotation>
@@ -104,7 +104,7 @@
 						<documentation>If DeploymentDone = true</documentation>
 					</annotation>
 				</element>
-				<element name="FailureReason" type="xs:string">
+				<element name="FailureReason" type="string">
 					<annotation>
 						<documentation>If DeploymentDone = false</documentation>
 					</annotation>

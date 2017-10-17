@@ -24,7 +24,6 @@
 				<artifactId>xmlbeans-maven-plugin</artifactId>
 				<configuration>
 					<sourceSchemas>
-						<sourceSchema>wps/t/profiles/deploymentProfiles.xsd</sourceSchema>
                                                 <sourceSchema>wps/t/profiles/tb13-eoc-metadata.xsd</sourceSchema>
 					</sourceSchemas>
 				</configuration>
