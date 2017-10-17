@@ -24,7 +24,7 @@
                 <artifactId>xmlbeans-maven-plugin</artifactId>
                 <configuration>
                     <sourceSchemas>
-                        <sourceSchema>wps/t/wpsTransactional.xsd</sourceSchema>
+                        <sourceSchema>wps/t/wps.xsd</sourceSchema>
                     </sourceSchemas>
                 </configuration>
             </plugin>
@@ -40,8 +40,8 @@
             <artifactId>52n-ogc-schema</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.n52.wps</groupId>
-            <artifactId>52n-xml-wps-v20</artifactId>
+            <groupId>org.n52.sensorweb</groupId>
+            <artifactId>52n-xml-ows-v20</artifactId>
         </dependency>
     </dependencies>
 </project>
