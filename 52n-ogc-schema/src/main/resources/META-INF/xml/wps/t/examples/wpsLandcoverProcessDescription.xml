@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    OGC LICENSE HEADER
+
+    The official OGC XML schemas can be accessed under http://schemas.opengis.net.
+    Please consider the schema copyright notices: http://www.opengeospatial.org/ogc/document
+    and the OGC Copyright Notice and Disclaimers: http://www.opengeospatial.org/ogc/legal
+    If there are any questions left there is also a copyright FAQ: http://www.opengeospatial.org/ogc/legalfaq
+-->
+<!-- This document is a sample example of the landcover application process description -->
+<!-- The Process Description includes all information that may be useful for the client or for the WPS implementation -->
+<wps:ProcessOfferings xmlns:wps="http://www.opengis.net/wps/2.0" xmlns:ows="http://www.opengis.net/ows/2.0" xmlns:owc="http://www.opengis.net/owc/1.0" xmlns:eoc="http://www.opengis.net/wps/2.0/profile/tb13/eoc" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.opengis.net/wps/2.0 ../wps.xsd http://www.opengis.net/wps/2.0/profile/tb13/eoc ../wpsDockerProfile.xsd">
+	<wps:ProcessOffering jobControlOptions="async-execute dismiss" outputTransmission="value reference">
+		<wps:Process>
+			<ows:Title>Land Cover Mapping</ows:Title>
+			<ows:Abstract>Lang Cover Mapping is based on the Sentinel-2 processing workflow generated for the F-TEP platform.</ows:Abstract>
+			<ows:Identifier>LandCoverMapping</ows:Identifier>
+			<ows:Metadata xlink:role="http://www.opengis.net//tb13/eoc/applicationContext">
+				<eoc:ApplicationContext>
+					<!-- THE DOCKER IMAGE OFFERING -->
+					<owc:offering code="http://www.opengis.net/tb13/eoc/DockerImage">
+						<owc:content type="application/xml">
+							<eoc:DockerImage>
+								<eoc:reference>https://registry.hub.docker.com/v2/images/OGC-EOC-TEP/LandCoverMapping-image</eoc:reference>
+								<eoc:registry>http://hub.docker.com</eoc:registry>
+								<eoc:name>String</eoc:name>
+								<eoc:user>String</eoc:user>
+								<eoc:version>latest</eoc:version>
+								<eoc:os>linux</eoc:os>
+								<eoc:command>String</eoc:command>
+							</eoc:DockerImage>
+						</owc:content>
+					</owc:offering>
+					<!-- OpenSearch offering for IPT Poland -->
+					<owc:offering code="http://www.opengis.net/spec/owc-atom/1.0/req/opensearch">
+						<owc:content type="application/opensearchdescription+xml" href="http://geo.spacebel.be/opensearch/description.xml?parentIdentifier=EOP%3AIPT%3ASentinel2"/>
+					</owc:offering>
+					<!-- OpenSearch offering for AWS -->
+					<owc:offering code="http://www.opengis.net/spec/owc-atom/1.0/req/opensearch">
+						<owc:content type="application/opensearchdescription+xml" href="http://geo.spacebel.be/opensearch/description.xml?parentIdentifier=EOP%3ASENTINEL-HUB%3ASentinel2"/>
+					</owc:offering>
+				</eoc:ApplicationContext>
+			</ows:Metadata>
+			<wps:Input>
+				<ows:Title>Sentinel-2 Image</ows:Title>
+				<ows:Abstract>URL of Sentinel-2 Level 1C image product in the format offered by AWS or IPT, with a size of up to multiple gigabytes.</ows:Abstract>
+				<ows:Identifier>Image</ows:Identifier>
+				<wps:ComplexData>
+					<wps:Format mimeType="text/directory" default="true"/>
+				</wps:ComplexData>
+			</wps:Input>
+			<wps:Input>
+				<ows:Title>Reference Data</ows:Title>
+				<ows:Abstract>Representative training data set with land cover class attributes, in OGR vector format supported by GDAL, such as ESRI shapefile, in a flat zip structure containing .shp and the supporting files.</ows:Abstract>
+				<ows:Identifier>ReferenceData</ows:Identifier>
+				<wps:ComplexData>
+					<wps:Format mimeType="application/zip" encoding="base64" default="true"/>
+				</wps:ComplexData>
+			</wps:Input>
+			<wps:Input>
+				<ows:Title>Area Of Interest</ows:Title>
+				<ows:Identifier>AreaOfInterest</ows:Identifier>
+				<wps:LiteralData>
+					<!-- Not sure if WKT has a MIME type -->
+					<wps:Format mimeType="text/plain" default="true"/>
+					<LiteralDataDomain default="true">
+						<ows:AnyValue/>
+						<ows:DataType ows:reference="http://www.w3.org/2001/XMLSchema#string">String</ows:DataType>
+					</LiteralDataDomain>
+				</wps:LiteralData>
+			</wps:Input>
+			<wps:Input>
+				<ows:Title>EPSG Code</ows:Title>
+				<ows:Abstract>Coordinate reference system expressed as a code from the EPSG database using the format "EPSG:NNNN".</ows:Abstract>
+				<ows:Identifier>EPSGCode</ows:Identifier>
+				<wps:LiteralData>
+					<wps:Format mimeType="text/plain" default="true"/>
+					<LiteralDataDomain>
+						<ows:ValuesReference ows:reference="http://...."/>
+						<ows:DataType ows:reference="http://www.w3.org/2001/XMLSchema#string">String</ows:DataType>
+					</LiteralDataDomain>
+				</wps:LiteralData>
+			</wps:Input>
+			<wps:Input>
+				<ows:Title>Target Resolution</ows:Title>
+				<ows:Abstract>Some description of what the target resolution means.</ows:Abstract>
+				<ows:Identifier>TargetResolution</ows:Identifier>
+				<wps:LiteralData>
+					<wps:Format mimeType="text/plain" default="true"/>
+					<LiteralDataDomain>
+						<ows:AnyValue/>
+						<ows:DataType ows:reference="http://www.w3.org/2001/XMLSchema#long">Long Integer</ows:DataType>
+					</LiteralDataDomain>
+				</wps:LiteralData>
+			</wps:Input>
+			<wps:Output>
+				<ows:Title>GeoTIF Image</ows:Title>
+				<ows:Abstract>Labeled GeoTIF file containing, for each pixel, one of the class codes specified in the training reference data.</ows:Abstract>
+				<ows:Identifier>Image</ows:Identifier>
+				<wps:ComplexData>
+					<wps:Format mimeType="image/tiff" encoding="raw" default="true"/>
+				</wps:ComplexData>
+			</wps:Output>
+		</wps:Process>
+	</wps:ProcessOffering>
+</wps:ProcessOfferings>

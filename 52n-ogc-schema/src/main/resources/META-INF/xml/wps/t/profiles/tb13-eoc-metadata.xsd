@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    OGC LICENSE HEADER
+
+    The official OGC XML schemas can be accessed under http://schemas.opengis.net.
+    Please consider the schema copyright notices: http://www.opengeospatial.org/ogc/document
+    and the OGC Copyright Notice and Disclaimers: http://www.opengeospatial.org/ogc/legal
+    If there are any questions left there is also a copyright FAQ: http://www.opengeospatial.org/ogc/legalfaq
+-->
+
+<schema xmlns:atom="http://www.w3.org/2005/Atom" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ows="http://www.opengis.net/ows/2.0" xmlns:eoc="http://www.opengis.net/wps/2.0/profile/tb13/eoc" targetNamespace="http://www.opengis.net/wps/2.0/profile/tb13/eoc" elementFormDefault="qualified" version="2.0.0" xml:lang="en">
+	<import namespace="http://www.opengis.net/ows/2.0" schemaLocation="http://schemas.opengis.net/ows/2.0/owsAll.xsd"/>
+	<import namespace="http://www.w3.org/2005/Atom" schemaLocation="./atom.xsd"/>
+	<element name="DockerImageInfo">
+		<annotation>
+			<documentation>Information needed to deploy and execute a Docker containerised application.</documentation>
+		</annotation>
+		<complexType>
+			<sequence>
+				<element name="registry" type="xs:anyURI" default="http://hub.docker.com" minOccurs="0">
+					<annotation>
+						<documentation>URL of registry holding the Docker image. Default is URL of Docker Hub.</documentation>
+					</annotation>
+				</element>
+				<element name="name" type="xs:token" minOccurs="0">
+					<annotation>
+						<documentation>Name of the Docker image.</documentation>
+					</annotation>
+				</element>
+				<element name="user" type="xs:token" minOccurs="0">
+					<annotation>
+						<documentation>User of the Docker image.</documentation>
+					</annotation>
+				</element>
+				<element name="version" type="xs:token" default="latest" minOccurs="0">
+					<annotation>
+						<documentation>Version of the Docker image. Default is latest.</documentation>
+					</annotation>
+				</element>
+				<element name="os" type="xs:token" default="linux" minOccurs="0">
+					<annotation>
+						<documentation>Type of the Docker image. Default is Linux.</documentation>
+					</annotation>
+				</element>
+				<element name="command" type="xs:normalizedString" minOccurs="0">
+					<annotation>
+						<documentation>Command to be executed when running the Docker image (ovewrites the entry point defined in the image).</documentation>
+					</annotation>
+				</element>
+			</sequence>
+		</complexType>
+	</element>
+	<element name="ApplicationContext" substitutionGroup="ows:AbstractMetaData">
+		<annotation>
+			<documentation>Application context consisting of an Atom feed.</documentation>
+		</annotation>
+		<complexType>
+			<sequence>
+				<element ref="atom:feed"/>
+			</sequence>
+		</complexType>
+	</element>
+</schema>
