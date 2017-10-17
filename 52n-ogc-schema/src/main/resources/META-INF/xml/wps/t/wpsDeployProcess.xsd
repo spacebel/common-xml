@@ -21,10 +21,44 @@
 	<import namespace="http://www.opengis.net/ows/2.0" schemaLocation="http://schemas.opengis.net/ows/2.0/owsAll.xsd"/>
 	<import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="http://www.w3.org/2001/xml.xsd"/>
 	<!-- === INCLUDES === -->
-	
+		<!-- =========================================================== -->
+	<!-- DeployProcess request elements and types -->
 	<!-- =========================================================== -->
-	<!-- DescribeProcess request elements and types -->
-	<!-- =========================================================== -->
+	<complexType name="PackageReferenceType">
+		<annotation>
+			<documentation>Reference (URL) to an archive file to be deployed. </documentation>
+		</annotation>
+		<attribute name="href" type="anyURI" use="required">
+			<annotation>
+				<documentation>This attribute shall contain a URL from which the package can be electronically retrieved. </documentation>
+			</annotation>
+		</attribute>
+	</complexType>
+	<complexType name="ExecutionUnitType">
+		<choice>
+			<element name="Package" type="anyType">
+				<annotation>
+					<documentation>Package to be deployed.</documentation>
+				</annotation>
+			</element>
+			<element name="Reference" type="wps:PackageReferenceType">
+				<annotation>
+					<documentation>Reference (URL) to the package to be deployed.</documentation>
+				</annotation>
+			</element>
+		</choice>
+	</complexType>
+	<complexType name="DeploymentProfileType">
+		<sequence>
+			<element name="DeploymentProfileName" type="xs:normalizedString">
+				<annotation>
+					<documentation>Process deployment profile Name.</documentation>
+				</annotation>
+			</element>
+			<element name="ExecutionUnit" type="wps:ExecutionUnitType" minOccurs="0"/>
+			<element name="ProfileExtension" type="anyType" minOccurs="0"/>
+		</sequence>
+	</complexType>
 	<element name="DeployProcess">
 		<annotation>
 			<documentation>WPS DescribeProcess operation request. </documentation>
@@ -35,45 +69,47 @@
 					<sequence>
 						<element ref="wps:ProcessOffering">
 							<annotation>
-								<documentation>
-									One or more identifiers for which the process description shall be obtained.
-									"ALL"" is reserved to retrieve the  descriptions for all available process offerings.
-								</documentation>
+								<documentation>Description of the process being deployed.</documentation>
 							</annotation>
 						</element>
-						<element name="DeploymentProfile" type="wps:AbstractDeploymentProfileType"/>
-					</sequence>
-				</extension>
-			</complexContent>
-		</complexType>
-	</element>
-	<element name="DeployProcessResponse">
-		<annotation>
-			<documentation>WPS DescribeProcess operation request. </documentation>
-		</annotation>
-		<complexType>
-			<complexContent>
-				<extension base="wps:RequestBaseType">
-					<sequence>
-						<element name="Result">
-							<complexType>
-								<attribute name="success" type="boolean"/>
-							</complexType>
+						<element name="DeploymentProfile" type="wps:DeploymentProfileType">
+							<annotation>
+								<documentation>Process deployment profile.</documentation>
+							</annotation>
 						</element>
 					</sequence>
+					<attribute ref="xml:lang" use="optional">
+						<annotation>
+							<documentation>RFC 4646 language code of the human-readable text (e.g. "en-CA") in the process description.</documentation>
+						</annotation>
+					</attribute>
 				</extension>
 			</complexContent>
 		</complexType>
 	</element>
 	<!-- =========================================================== -->
-	<!-- DescribeProcess response elements and types -->
-	<complexType name="AbstractDeploymentProfileType" abstract="1">
+	<!-- DeployProcess response elements and types -->
+	<!-- =========================================================== -->
+	<element name="DeployResult" type="wps:DeployResultType">
+		<annotation>
+			<documentation>DeployProcess result.</documentation>
+		</annotation>
+	</element>
+	<complexType name="DeployResultType">
 		<sequence>
-			<element name="Schema">
-				<complexType>
-					<attribute ref="ows:reference"/>
-				</complexType>
-			</element>
+			<element name="DeploymentDone" type="boolean"/>
+			<choice>
+				<element name="ProcessSummary" type="wps:ProcessSummaryType" minOccurs="0">
+					<annotation>
+						<documentation>If DeploymentDone = true</documentation>
+					</annotation>
+				</element>
+				<element name="FailureReason" type="xs:string">
+					<annotation>
+						<documentation>If DeploymentDone = false</documentation>
+					</annotation>
+				</element>
+			</choice>
 		</sequence>
 	</complexType>
 </schema>

@@ -22,13 +22,12 @@
 	<import namespace="http://www.opengis.net/ows/2.0" schemaLocation="http://schemas.opengis.net/ows/2.0/owsAll.xsd"/>
 	<import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="http://www.w3.org/2001/xml.xsd"/>
 	<!-- === INCLUDES === -->
-	
-	<!-- =========================================================== -->
-	<!-- DescribeProcess request elements and types -->
+		<!-- =========================================================== -->
+	<!-- UndeployProcess request elements and types -->
 	<!-- =========================================================== -->
 	<element name="UndeployProcess">
 		<annotation>
-			<documentation>WPS DescribeProcess operation request. </documentation>
+			<documentation>WPS UndeployProcess operation request.</documentation>
 		</annotation>
 		<complexType>
 			<complexContent>
@@ -36,7 +35,12 @@
 					<sequence>
 						<element ref="ows:Identifier">
 							<annotation>
-								<documentation>Identifier of the process to be undeployed.								</documentation>
+								<documentation>Identifier of the process to be undeployed.</documentation>
+							</annotation>
+						</element>
+						<element name="KeepExecutionUnit" type="boolean" minOccurs="0">
+							<annotation>
+								<documentation>Identifier of the process to be undeployed.</documentation>
 							</annotation>
 						</element>
 					</sequence>
@@ -44,25 +48,39 @@
 			</complexContent>
 		</complexType>
 	</element>
-	<element name="UndeployProcessResponse">
+	<!-- =========================================================== -->
+	<!-- UndeployProcess response elements and types -->
+	<!-- =========================================================== -->
+	<element name="UndeployResult" type="wps:UndeployResultType">
 		<annotation>
-			<documentation>WPS DescribeProcess operation request. </documentation>
+			<documentation>UndeployProcess result.</documentation>
 		</annotation>
-		<complexType>
-			<complexContent>
-				<extension base="wps:RequestBaseType">
-					<sequence>
-						<element name="Result">
-							<complexType>
-								<attribute name="success" type="boolean" default="true"/>
-							</complexType>
-						</element>
-					</sequence>
-				</extension>
-			</complexContent>
-		</complexType>
 	</element>
-	<!-- =========================================================== -->
-	<!-- DescribeProcess response elements and types -->
-	<!-- =========================================================== -->
+	<complexType name="UndeployResultType">
+		<sequence>
+			<element name="UndeploymentDone" type="boolean"/>
+			<choice>
+				<sequence>
+					<annotation>
+						<documentation>If UndeploymentDone = true</documentation>
+					</annotation>
+					<element ref="ows:Identifier" minOccurs="0">
+						<annotation>
+							<documentation>Identifier of the undeployed process.</documentation>
+						</annotation>
+					</element>
+					<element ref="wps:Capabilities" minOccurs="0">
+						<annotation>
+							<documentation>Updated Capabilities document.</documentation>
+						</annotation>
+					</element>
+				</sequence>
+				<element name="FailureReason" type="xs:string">
+					<annotation>
+						<documentation>If UndeploymentDone = false</documentation>
+					</annotation>
+				</element>
+			</choice>
+		</sequence>
+	</complexType>
 </schema>
