@@ -1,5 +1,7 @@
 # common-xml
 
+This project is a fork that adds the WPS-T for WPS 2.0.0 as implemented during OGC Testbed 13 project. The project also contains the EOC profiles used by the demonstrator implementation.
+
 A set of commonly used OGC schemas compiled to XMLBeans bindings and provided as Maven dependencies by 52°North. The 52°North common-xml project organizes some of these standards to be built as Java bindings to ease programming against all those standards. Once compiled standardized XML documents can be created, parsed and validated directly as Java objects.
 
 More information can also be found in the 52°North Wiki: https://wiki.52north.org/bin/view/Documentation/XMLBeansBindings
