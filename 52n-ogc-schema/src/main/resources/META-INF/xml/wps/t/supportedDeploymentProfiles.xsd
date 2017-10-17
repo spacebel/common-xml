@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- edited with XMLSpy v2006 sp2 U (http://www.altova.com) by Joel Lim (Spacebel SA) -->
+<!--
+    OGC LICENSE HEADER
+
+    The official OGC XML schemas can be accessed under http://schemas.opengis.net.
+    Please consider the schema copyright notices: http://www.opengeospatial.org/ogc/document
+    and the OGC Copyright Notice and Disclaimers: http://www.opengeospatial.org/ogc/legal
+    If there are any questions left there is also a copyright FAQ: http://www.opengeospatial.org/ogc/legalfaq
+-->
 <schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:wps="http://www.opengis.net/wps/2.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.opengis.net/wps/2.0" elementFormDefault="qualified" version="2.0.0" xml:lang="en">
 	<!-- =============================================================
 		includes and imports
