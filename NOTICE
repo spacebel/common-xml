@@ -1,5 +1,4 @@
 Copyright 2013 52°North Initiative for Geospatial Open Source Software GmbH
-extended in 2017 by Spacebel (WPS transactional)
 
 Licensed under The Apache Software License, Version 2.0
 
@@ -80,8 +79,10 @@ This project includes:
   OGC WFS schema (spec. v2.0.0) under The Apache Software License, Version 2.0
   OGC WMS schema (spec. v1.3.0) under The Apache Software License, Version 2.0
   OGC WNS schema 0.0.9 (OGC 06-095) under The Apache Software License, Version 2.0
+  OGC WPS EOC Profile schema (spec. v2.0) under The Apache Software License, Version 2.0
   OGC WPS schema (spec. v1.0.0) under The Apache Software License, Version 2.0
   OGC WPS schema (spec. v2.0) under The Apache Software License, Version 2.0
+  OGC WPS Transactional Extension schema (spec. v2.0) under The Apache Software License, Version 2.0
   OGC XML Best Practise schemas under The Apache Software License, Version 2.0
   OGC XML schemas under The Apache Software License, Version 2.0
   Portele Schape Change schema (spec. v3.0) under The Apache Software License, Version 2.0
